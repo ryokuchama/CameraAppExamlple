@@ -17,17 +17,32 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/design_default_color_primary_dark"
             app:popupTheme="@style/Theme.CameraAppExamlple.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/correct_image">
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/correct_image">
+        </TextView>
+        <Button
+            android:id="@+id/correctImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/src"
@@ -35,17 +50,39 @@
         android:layout_height="wrap_content"
         android:layout_weight="9"></ImageView>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/comparative_image">
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/comparative_image">
+        </TextView>
+        <Button
+            android:id="@+id/comparativeImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/target"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="9"></ImageView>
+
+    <Button
+        android:id="@+id/findDifferences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/find_differences">
+
+    </Button>
 
 </LinearLayout>

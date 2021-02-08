@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="correct_image">Correct Image</string>
     <string name="comparative_image">Comparative Image</string>
+    <string name="find_differences">Find Differences</string>
 </resources>

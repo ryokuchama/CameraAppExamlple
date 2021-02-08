@@ -12,21 +12,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.SurfaceHolder.Callback
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-    }
+        val correct: ImageView = findViewById(R.id.src)
+        val comparative: ImageView = findViewById(R.id.target)
+        val correctButton: Button = findViewById(R.id.correctImageButton)
+        val comparativeButton: Button = findViewById(R.id.comparativeImageButton)
+        val find: Button = findViewById(R.id.findDifferences)
 
+        correct.setImageResource(R.drawable.noimage)
+        comparative.setImageResource(R.drawable.noimage)
+
+
+
+    }
 }
