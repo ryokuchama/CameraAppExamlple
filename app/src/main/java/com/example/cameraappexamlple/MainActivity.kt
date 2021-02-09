@@ -1,6 +1,7 @@
 package com.example.cameraappexamlple
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.ImageFormat
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.CameraManager
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.SurfaceHolder.Callback
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,7 +38,35 @@ class MainActivity : AppCompatActivity() {
         correct.setImageResource(R.drawable.noimage)
         comparative.setImageResource(R.drawable.noimage)
 
+        correctButton.setOnClickListener{
+            val intent: Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
+            }
 
+            startActivityForResult(intent, 42)
+        }
 
+//        companion object {
+//            private const val READ_REQUEST_CODE: Int = 42
+//        }
+
+        comparativeButton.setOnClickListener {
+            val intent: Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
+            }
+
+            startActivityForResult(intent, 42)
+        }
+
+        find.setOnClickListener {
+
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
