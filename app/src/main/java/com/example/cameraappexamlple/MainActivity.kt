@@ -1,5 +1,6 @@
 package com.example.cameraappexamlple
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -24,13 +25,18 @@ import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+    var correct: ImageView? = null
+    var comparative: ImageView? = null
+
+    var mode: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        val correct: ImageView = findViewById(R.id.src)
-        val comparative: ImageView = findViewById(R.id.target)
+        correct= findViewById(R.id.src)
+        comparative = findViewById(R.id.target)
         val correctButton: Button = findViewById(R.id.correctImageButton)
         val comparativeButton: Button = findViewById(R.id.comparativeImageButton)
         val find: Button = findViewById(R.id.findDifferences)
@@ -39,19 +45,17 @@ class MainActivity : AppCompatActivity() {
         comparative.setImageResource(R.drawable.noimage)
 
         correctButton.setOnClickListener{
-            val intent: Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "image/*"
-            }
+            val intent: Intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            mode = 0
 
             startActivityForResult(intent, READ_REQUEST_CODE)
         }
 
         comparativeButton.setOnClickListener {
-            val intent: Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "image/*"
-            }
+            val intent: Intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            mode = 1
 
             startActivityForResult(intent, READ_REQUEST_CODE)
         }
@@ -65,20 +69,13 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode != RESULT_OK) {
-            return
-        }
         when (requestCode) {
             READ_REQUEST_CODE -> {
-                try {
-                    data?.also { uri ->
-                        val inputStream = contentResolver?.openInputStream(uri)
-                        val image = BitmapFactory.decodeStream(inputStream)
+                if (resultCode == Activity.RESULT_OK && requestCode == READ_REQUEST_CODE) {
 
+                    when {
+                        mode == 0 -> correct
                     }
-                }
-                catch (e: Exception) {
-
                 }
             }
         }
@@ -87,6 +84,6 @@ class MainActivity : AppCompatActivity() {
     // クラス内に生成されるシングルトン
     // シングルトン -> 状態を持たないこと、抽象クラスまたはインターフェースを実装していること
     companion object {
-        const val READ_REQUEST_CODE: Int = 42
+        const val READ_REQUEST_CODE: Int = 2
     }
 }
